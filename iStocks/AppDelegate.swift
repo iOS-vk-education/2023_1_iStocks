@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  iStocks
-//
-//  Created by Yakovenko Ilya on 18.10.2023.
-//
-
 import UIKit
 
 @main
