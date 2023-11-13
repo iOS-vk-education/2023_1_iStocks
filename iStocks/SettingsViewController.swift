@@ -58,15 +58,23 @@ class SettingsViewController: UIViewController {
         tableView.backgroundColor = .viewControllerColor
         tableView.separatorColor = .settingsSeparatorColor
         
+        var frame = CGRect.zero
+        frame.size.height = .leastNormalMagnitude
+        tableView.tableHeaderView = UIView(frame: frame)
+        
         tableView.rowHeight = 44
+        tableView.layer.cornerRadius = 10
+        tableView.clipsToBounds = true
+        
+        var height: CGFloat = tableView.rowHeight * CGFloat(tableView.numberOfRows(inSection: 0))
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: 17),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            tableView.heightAnchor.constraint(equalToConstant: height)
         ])
     }
 }

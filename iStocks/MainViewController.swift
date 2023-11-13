@@ -27,7 +27,7 @@ class MainViewController: UIViewController {
     
     private let cellIdentifier = "StockCell"
         
-    private let searchController = UISearchController(searchResultsController: nil)
+    private let searchBar = UISearchBar()
     private let tableView = UITableView(frame: .zero, style: .plain)
     
     private var filteredStocks: [Stock] = []
@@ -43,8 +43,8 @@ class MainViewController: UIViewController {
     }
     
     private func setSearch() {
-        searchController.searchBar.placeholder = "Название или тикер"
-        searchController.searchBar.barTintColor = .searchControllerColor
+        searchBar.placeholder = "Название или тикер"
+        searchBar.barTintColor = .searchControllerColor
     }
     
     private func setTable() {
@@ -55,7 +55,7 @@ class MainViewController: UIViewController {
         tableView.rowHeight = 69
         tableView.sectionHeaderTopPadding = 0
         tableView.backgroundColor = .viewControllerColor
-        tableView.tableHeaderView = searchController.searchBar
+        tableView.tableHeaderView = searchBar
         
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -65,12 +65,6 @@ class MainViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
-    }
-}
-
-extension MainViewController: UISearchResultsUpdating {
-    
-    func updateSearchResults(for searchController: UISearchController) {
     }
 }
 
@@ -104,6 +98,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         cell.layer.cornerRadius = 26
         cell.layer.masksToBounds = true
         cell.layer.borderWidth = 3.25
+    
         
         if stock.favorites {
             cell.layer.borderColor = UIColor.cellFavoriteStockBorderColor.cgColor

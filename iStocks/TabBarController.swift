@@ -39,6 +39,5 @@ class TabBarController: UITabBarController {
     private func setTabBar() {
         self.tabBar.backgroundColor = .tabBarColor
         tabBar.tintColor = .tabBarItemColor
-        tabBar.unselectedItemTintColor = .tabBarItemColor
     }
 }
