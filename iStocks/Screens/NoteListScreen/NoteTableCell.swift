@@ -28,9 +28,9 @@ final class NoteTableCell: UITableViewCell {
     private func setContainer() {
         contentView.addSubview(containerView)
         
-        contentView.backgroundColor = UIColor(named: "viewController")
+        contentView.backgroundColor = UIColor(named: "first")
         
-        containerView.backgroundColor = UIColor(named: "notesCell")
+        containerView.backgroundColor = UIColor(named: "second")
         containerView.layer.cornerRadius = 26
         containerView.layer.masksToBounds = true
         
@@ -52,7 +52,7 @@ final class NoteTableCell: UITableViewCell {
         containerView.addSubview(noteLabel)
         
         noteLabel.font = UIFont.systemFont(ofSize: notesConstant.noteLabelFontSize, weight: .medium)
-        noteLabel.textColor = UIColor(named: "notesNoteLabel")
+        noteLabel.textColor = UIColor(named: "eighth")
         
         noteLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -79,7 +79,7 @@ final class NoteTableCell: UITableViewCell {
         containerView.addSubview(tickerLabel)
         
         tickerLabel.font = UIFont.systemFont(ofSize: notesConstant.tickerLabelFontSize, weight: .medium)
-        tickerLabel.textColor = UIColor(named: "notesTickerLabel")
+        tickerLabel.textColor = UIColor(named: "sixth")
         
         tickerLabel.translatesAutoresizingMaskIntoConstraints = false
         

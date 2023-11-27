@@ -14,7 +14,7 @@ class StockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
         
         setUpStockView()
     }
@@ -26,7 +26,7 @@ class StockViewController: UIViewController {
     private func setUpStockView() {
         view.addSubview(stockView)
         
-        stockView.backgroundColor = UIColor(named: "mainCell")
+        stockView.backgroundColor = UIColor(named: "second")
         stockView.layer.borderWidth = 3.25
         stockView.layer.cornerRadius = 23
         stockView.layer.masksToBounds = true
@@ -36,15 +36,15 @@ class StockViewController: UIViewController {
         }
         
         if stock.isFavorite {
-            stockView.layer.borderColor = UIColor(named: "mainCellBorderFavorite")?.cgColor
+            stockView.layer.borderColor = UIColor(named: "eleventh")?.cgColor
         } else {
-            stockView.layer.borderColor = UIColor(named: "mainCellBorder")?.cgColor
+            stockView.layer.borderColor = UIColor(named: "seventh")?.cgColor
         }
         
         stockView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stockView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 23),
+            stockView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
             stockView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             stockView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             stockView.heightAnchor.constraint(equalToConstant: 93)
@@ -88,7 +88,7 @@ class StockViewController: UIViewController {
         }
         
         stockNameLabel.text = stock.name
-        stockNameLabel.textColor = UIColor(named: "notesNoteLabel")
+        stockNameLabel.textColor = UIColor(named: "eightht")
         stockNameLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
         
         stockNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -130,11 +130,11 @@ class StockViewController: UIViewController {
         stockPriceLabel.text = String(format: "%+.*f ₽   %+.*f%%", priceAccuracy, differencePrice, percentsAccuracy, abs(differencePercents)).replacingOccurrences(of: ".", with: ",")
         
         if differencePrice == 0 {
-            stockPriceLabel.textColor = UIColor(named: "priceStay")
+            stockPriceLabel.textColor = UIColor(named: "sixth")
         } else if differencePrice > 0 {
-            stockPriceLabel.textColor = UIColor(named: "priceRise")
+            stockPriceLabel.textColor = UIColor(named: "nineth")
         } else {
-            stockPriceLabel.textColor = UIColor(named: "priceFall")
+            stockPriceLabel.textColor = UIColor(named: "tenth")
         }
         
         stockPriceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -172,7 +172,7 @@ class StockViewController: UIViewController {
         }
         
         stockTickerLabel.font = UIFont.systemFont(ofSize: 11, weight: .medium)
-        stockTickerLabel.textColor = UIColor(named: "settingsButton")
+        stockTickerLabel.textColor = UIColor(named: "sixth")
         stockTickerLabel.text = stock.ticker
         
         

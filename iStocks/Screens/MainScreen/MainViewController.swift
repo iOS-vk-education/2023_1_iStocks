@@ -14,10 +14,15 @@ class MainViewController: UIViewController {
     private let segmentedItems = ["ВСЕ", "Подписки"]
     
     private var selectedScreen = Screen.all
+    private var printedStocks = stocks
+    
+    private var searchedStocks = [Stock]()
+    private var isSearched = false
+    private var searchedText = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
 
         setNavigationItem()
         setSearchBar()
@@ -32,15 +37,18 @@ class MainViewController: UIViewController {
     private func setNavigationItem() {
         let barButtonItem = UIBarButtonItem()
         
-        barButtonItem.title = "Главная страница"
-        barButtonItem.tintColor = UIColor(named: "backButton")
+        barButtonItem.title = "Главная"
+        barButtonItem.tintColor = UIColor(named: "sixth")
         
         navigationItem.backBarButtonItem = barButtonItem
     }
     
     private func setSearchBar() {
         searchBar.placeholder = "Название или тикер"
-        searchBar.barTintColor = UIColor(named: "mainSearchBar")
+        searchBar.delegate = self
+        searchBar.tintColor = UIColor(named: "seventh")
+        
+        searchBar.searchTextField.textColor = UIColor(named: "eighth")
         
         navigationItem.titleView = searchBar
     }
@@ -49,17 +57,16 @@ class MainViewController: UIViewController {
         view.addSubview(segmentedControl)
         
         segmentedControl.addTarget(self, action: #selector(suitDidChange), for: .valueChanged)
-        segmentedControl.backgroundColor = UIColor(named: "mainSegmentedControl")
-        segmentedControl.selectedSegmentTintColor = UIColor(named: "mainSegmentedControlSelected")
+        segmentedControl.backgroundColor = UIColor(named: "third")
+        segmentedControl.selectedSegmentTintColor = UIColor(named: "sixth")
         segmentedControl.selectedSegmentIndex = 0
         
         segmentedControl.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor(named: "mainSegmentedControlText")!
+            NSAttributedString.Key.foregroundColor: UIColor(named: "sixth")!
         ], for: .normal)
         segmentedControl.setTitleTextAttributes([
-            NSAttributedString.Key.foregroundColor: UIColor(named: "mainSegmentedControlSelectedText")!
+            NSAttributedString.Key.foregroundColor: UIColor(named: "third")!
         ], for: .selected)
-        
         
         segmentedControl.translatesAutoresizingMaskIntoConstraints = false
         
@@ -78,13 +85,13 @@ class MainViewController: UIViewController {
         tableView.dataSource = self
 
         tableView.rowHeight = mainConstant.cellHeight
-        tableView.backgroundColor = UIColor(named: "viewController")
+        tableView.backgroundColor = UIColor(named: "first")
         tableView.separatorStyle = .none
 
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: mainConstant.tableTopAnchor),
+            tableView.topAnchor.constraint(equalTo: segmentedControl.bottomAnchor, constant: 8),
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
@@ -102,18 +109,29 @@ class MainViewController: UIViewController {
             fatalError()
         }
         
+        configurePrintedStocks()
+        configureSearchedStocks()
         tableView.reloadData()
     }
     
-    private func printedStocks() -> [Stock] {
-        return selectedScreen == .all ? stocks : stocks.filter{ stock in stock.isFavorite }
+    private func configurePrintedStocks() {
+        printedStocks = selectedScreen == .all ? stocks : stocks.filter{ stock in stock.isFavorite }
+    }
+    
+    private func configureSearchedStocks() {
+        searchedStocks = printedStocks.filter({
+            $0.name.lowercased().prefix(searchedText.lowercased().count) == searchedText.lowercased() || $0.ticker.lowercased().prefix(searchedText.lowercased().count) == searchedText.lowercased()
+        })
     }
 }
 
 extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        printedStocks().count
+        configurePrintedStocks()
+        configureSearchedStocks()
+        
+        return isSearched ? searchedStocks.count : printedStocks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,8 +139,15 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = cell as? MainTableCell else {
             fatalError()
         }
-
-        cell.configure(with: printedStocks()[indexPath.row])
+        
+        configurePrintedStocks()
+        configureSearchedStocks()
+        
+        if isSearched {
+            cell.configure(with: searchedStocks[indexPath.row])
+        } else {
+            cell.configure(with: printedStocks[indexPath.row])
+        }
         
         return cell
     }
@@ -132,7 +157,28 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let stockViewController = StockViewController()
-        stockViewController.stock = printedStocks()[indexPath.row]
+        
+        configurePrintedStocks()
+        configureSearchedStocks()
+        
+        if isSearched {
+            stockViewController.stock = searchedStocks[indexPath.row]
+        } else {
+            stockViewController.stock = printedStocks[indexPath.row]
+        }
+        
         navigationController?.pushViewController(stockViewController, animated: true)
+    }
+}
+
+extension MainViewController: UISearchBarDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        configurePrintedStocks()
+        searchedText = searchText
+        isSearched = searchText.count != 0
+        configureSearchedStocks()
+        
+        tableView.reloadData()
     }
 }

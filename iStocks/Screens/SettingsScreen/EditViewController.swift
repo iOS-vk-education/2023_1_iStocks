@@ -5,6 +5,6 @@ class EditViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
     }
 }

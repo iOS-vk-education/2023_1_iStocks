@@ -4,14 +4,15 @@ class ThemeViewController: UIViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
 
-    private let cellsName = ["Светлое", "Темное", "Системное"]
+    private var cellsName = [String]()
 
     private let cellIdentifier = "themeCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
             
+        configCellsName()
         setTableView()
     }
     
@@ -29,6 +30,8 @@ class ThemeViewController: UIViewController {
         tableView.layer.cornerRadius = decorationConstant.cellCornerRadius
         tableView.clipsToBounds = true
         
+        tableView.separatorColor = UIColor(named: "twelfth")
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -37,6 +40,12 @@ class ThemeViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: decorationConstant.tableTrailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableHeight)
         ])
+    }
+    
+    private func configCellsName() {
+        for theme in Theme.allCases {
+            cellsName.append(theme.rawValue)
+        }
     }
 }
 
@@ -50,13 +59,12 @@ extension ThemeViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
 
-        cell.backgroundColor = UIColor(named: "decorationCell")
-        cell.selectionStyle = .none
+        cell.backgroundColor = UIColor(named: "thirteenth")
 
         content.text = cellsName[indexPath.row]
-        content.textProperties.color = UIColor(named: "decorationCellName")!
+        content.textProperties.color = UIColor(named: "eighth")!
         
-        if user.decoration == content.text! {
+        if user.theme.rawValue == content.text! {
             cell.accessoryType = .checkmark
         }
 
@@ -71,8 +79,9 @@ extension ThemeViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
-        tableView.cellForRow(at: [0, cellsName.firstIndex(of: user.decoration)!])?.accessoryType = .none
+        tableView.cellForRow(at: [0, cellsName.firstIndex(of: user.theme.rawValue)!])?.accessoryType = .none
         cell?.accessoryType = .checkmark
-        user.decoration = cellsName[indexPath.row]
+        user.theme = Theme(rawValue: cellsName[indexPath.row])!
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

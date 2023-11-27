@@ -14,7 +14,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
         
         setNavigationItem()
         setImageView()
@@ -35,13 +35,13 @@ class SettingsViewController: UIViewController {
         let backBarButtonItem = UIBarButtonItem()
         
         backBarButtonItem.title = "Настройки"
-        backBarButtonItem.tintColor = UIColor(named: "backButton")
+        backBarButtonItem.tintColor = UIColor(named: "sixth")
         
         navigationItem.backBarButtonItem = backBarButtonItem
         
         if user.isLogged {
             rightBarButtonItem = UIBarButtonItem(title: "Изм.", style: .plain, target: self, action: #selector(clickEdit))
-            rightBarButtonItem.tintColor = UIColor(named: "settingsRightButton")
+            rightBarButtonItem.tintColor = UIColor(named: "sixth")
             navigationItem.rightBarButtonItem = rightBarButtonItem
         }
     }
@@ -54,7 +54,9 @@ class SettingsViewController: UIViewController {
         
         NSLayoutConstraint.activate([
             imageView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
+            imageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 150),
+            imageView.widthAnchor.constraint(equalToConstant: 150)
         ])
     }
     
@@ -62,7 +64,7 @@ class SettingsViewController: UIViewController {
         view.addSubview(label)
         
         label.text = user.username
-        label.textColor = UIColor(named: "nickname")
+        label.textColor = UIColor(named: "seventh")
         label.font = UIFont.systemFont(ofSize: settingsConstant.labelFontSize, weight: .semibold)
         
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -87,6 +89,8 @@ class SettingsViewController: UIViewController {
         tableView.layer.cornerRadius = settingsConstant.cellCornerRadius
         tableView.clipsToBounds = true
         
+        tableView.separatorColor = UIColor(named: "twelfth")
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -101,10 +105,10 @@ class SettingsViewController: UIViewController {
         view.addSubview(button)
         
         button.setTitle("Войти в аккаунт", for: .normal)
-        button.setTitleColor(UIColor(named: "settingsButtonTitle")!, for: .normal)
+        button.setTitleColor(UIColor(named: "third")!, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: settingsConstant.buttonFontSize, weight: .semibold)
         
-        button.backgroundColor = UIColor(named: "settingsButton")
+        button.backgroundColor = UIColor(named: "sixth")
         button.layer.cornerRadius = settingsConstant.buttonCornerRaduis
         button.clipsToBounds = true
         
@@ -143,18 +147,17 @@ extension SettingsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
         
-        cell.backgroundColor = UIColor(named: "settingsCell")
-        cell.selectionStyle = .none
+        cell.backgroundColor = UIColor(named: "thirteenth")
         
         content.text = cellsName[indexPath.row]
-        content.textProperties.color = UIColor(named: "settingsCellName")!
+        content.textProperties.color = UIColor(named: "eighth")!
         
         if indexPath.row == 0 {
-            detailLabel.text = user.decoration
+            detailLabel.text = user.theme.rawValue
         } else if indexPath.row == 1 {
-            detailLabel.text = user.language
+            detailLabel.text = user.language.rawValue
         }
-        detailLabel.textColor = UIColor(named: "settingsCellSelected")
+        detailLabel.textColor = UIColor(named: "fifth")
         
         detailLabel.sizeToFit()
         
@@ -169,5 +172,6 @@ extension SettingsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         navigationController?.pushViewController(viewControllers[indexPath.row], animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

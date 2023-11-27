@@ -30,7 +30,7 @@ final class MainTableCell: UITableViewCell {
         logoImageView.image = stock.image
         nameLabel.text = stock.name
         tickerLabel.text = stock.ticker
-        currentPriceLabel.text = "\(stock.currentPrice) ₽"
+        currentPriceLabel.text = "\(stock.currentPrice) ₽".replacingOccurrences(of: ".", with: ",")
         
         if Int(differencePrice * 100) % 10 == 0 {
             priceAccuracy = 1
@@ -46,26 +46,26 @@ final class MainTableCell: UITableViewCell {
         
         
         if differencePrice == 0 {
-            differencePriceLabel.textColor = UIColor(named: "priceStay")
+            differencePriceLabel.textColor = UIColor(named: "sixth")
         } else if differencePrice > 0 {
-            differencePriceLabel.textColor = UIColor(named: "priceRise")
+            differencePriceLabel.textColor = UIColor(named: "nineth")
         } else {
-            differencePriceLabel.textColor = UIColor(named: "priceFall")
+            differencePriceLabel.textColor = UIColor(named: "tenth")
         }
         
         if stock.isFavorite {
-            containerView.layer.borderColor = UIColor(named: "mainCellBorderFavorite")?.cgColor
+            containerView.layer.borderColor = UIColor(named: "eleventh")?.cgColor
         } else {
-            containerView.layer.borderColor = UIColor(named: "mainCellBorder")?.cgColor
+            containerView.layer.borderColor = UIColor(named: "seventh")?.cgColor
         }
     }
     
     private func setContainer() {
         contentView.addSubview(containerView)
         
-        contentView.backgroundColor = UIColor(named: "viewController")
+        contentView.backgroundColor = UIColor(named: "first")
         
-        containerView.backgroundColor = UIColor(named: "mainCell")
+        containerView.backgroundColor = UIColor(named: "second")
         containerView.layer.cornerRadius = mainConstant.cellCornerRadius
         containerView.layer.masksToBounds = true
         containerView.layer.borderWidth = mainConstant.cellBorder
@@ -103,7 +103,7 @@ final class MainTableCell: UITableViewCell {
         containerView.addSubview(nameLabel)
         
         nameLabel.font = UIFont.systemFont(ofSize: mainConstant.nameLabelFontSize, weight: .semibold)
-        nameLabel.textColor = UIColor(named: "mainNameLabel")
+        nameLabel.textColor = UIColor(named: "eighth")
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -117,7 +117,7 @@ final class MainTableCell: UITableViewCell {
         containerView.addSubview(tickerLabel)
         
         tickerLabel.font = UIFont.systemFont(ofSize: mainConstant.tickerLabelFontSize, weight: .medium)
-        tickerLabel.textColor = UIColor(named: "mainTickerLabel")
+        tickerLabel.textColor = UIColor(named: "sixth")
         
         tickerLabel.translatesAutoresizingMaskIntoConstraints = false
         
@@ -131,7 +131,7 @@ final class MainTableCell: UITableViewCell {
         containerView.addSubview(currentPriceLabel)
         
         currentPriceLabel.font = UIFont.systemFont(ofSize: mainConstant.priceLabelFontSize, weight: .semibold)
-        currentPriceLabel.textColor = UIColor(named: "mainPriceLabel")
+        currentPriceLabel.textColor = UIColor(named: "eighth")
         
         currentPriceLabel.translatesAutoresizingMaskIntoConstraints = false
         

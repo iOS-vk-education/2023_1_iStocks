@@ -16,7 +16,7 @@ class TabBarController: UITabBarController {
                 image: "main"
             ),
             generate(
-                SubscriptionsViewController(),
+                NotesViewController(),
                 title: "Заметки",
                 image: "notes"
             ),
@@ -38,8 +38,8 @@ class TabBarController: UITabBarController {
     }
     
     private func setTabBar() {
-        tabBar.backgroundColor = UIColor(named: "tabBar")
-        tabBar.tintColor = UIColor(named: "tabBarItem")
-        tabBar.unselectedItemTintColor = UIColor(named: "tabBarItem")
+        tabBar.backgroundColor = UIColor(named: "fourth")
+        tabBar.tintColor = UIColor(named: "sixth")
+        tabBar.unselectedItemTintColor = UIColor(named: "sixth")
     }
 }

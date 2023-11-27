@@ -4,14 +4,15 @@ class LanguageViewController: UIViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
 
-    private let cellsName = ["Русский", "Английский"]
+    private var cellsName = [String]()
 
     private let cellIdentifier = "languageCellIdentifier"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(named: "viewController")
+        view.backgroundColor = UIColor(named: "first")
         
+        configCellsName()
         setTableView()
     }
     
@@ -29,6 +30,8 @@ class LanguageViewController: UIViewController {
         tableView.layer.cornerRadius = languageConstant.cellCornerRadius
         tableView.clipsToBounds = true
         
+        tableView.separatorColor = UIColor(named: "twelfth")
+        
         tableView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -37,6 +40,12 @@ class LanguageViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: languageConstant.tableTrailingAnchor),
             tableView.heightAnchor.constraint(equalToConstant: tableHeight)
         ])
+    }
+    
+    private func configCellsName() {
+        for language in Language.allCases {
+            cellsName.append(language.rawValue)
+        }
     }
 }
 
@@ -50,12 +59,12 @@ extension LanguageViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath)
         var content = cell.defaultContentConfiguration()
 
-        cell.backgroundColor = UIColor(named: "languageCell")
+        cell.backgroundColor = UIColor(named: "thirteenth")
         
         content.text = cellsName[indexPath.row]
-        content.textProperties.color = UIColor(named: "languageCellName")!
+        content.textProperties.color = UIColor(named: "eighth")!
         
-        if user.language == content.text! {
+        if user.language.rawValue == content.text! {
             cell.accessoryType = .checkmark
         }
 
@@ -70,9 +79,9 @@ extension LanguageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         
-        tableView.cellForRow(at: [0, cellsName.firstIndex(of: user.language)!])?.accessoryType = .none
+        tableView.cellForRow(at: [0, cellsName.firstIndex(of: user.language.rawValue)!])?.accessoryType = .none
         cell?.accessoryType = .checkmark
-        user.language = cellsName[indexPath.row]
+        user.language = Language(rawValue: cellsName[indexPath.row])!
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
