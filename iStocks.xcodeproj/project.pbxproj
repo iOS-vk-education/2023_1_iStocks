@@ -25,6 +25,7 @@
 		A7DA334F2B0FA7D700A56DB2 /* MainTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA334E2B0FA7D700A56DB2 /* MainTableCell.swift */; };
 		A7DA33512B0FA82D00A56DB2 /* NoteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA33502B0FA82D00A56DB2 /* NoteTableCell.swift */; };
 		A7DA33532B0FA91900A56DB2 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA33522B0FA91900A56DB2 /* ThemeViewController.swift */; };
+		CE1DE13E2B3B745B004821CE /* SignUpViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DE13D2B3B745B004821CE /* SignUpViewConroller.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		A7DA334E2B0FA7D700A56DB2 /* MainTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableCell.swift; sourceTree = "<group>"; };
 		A7DA33502B0FA82D00A56DB2 /* NoteTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableCell.swift; sourceTree = "<group>"; };
 		A7DA33522B0FA91900A56DB2 /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
+		CE1DE13D2B3B745B004821CE /* SignUpViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewConroller.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				A7C72ACA2B0838A100FD72CE /* LoginViewController.swift */,
+				CE1DE13D2B3B745B004821CE /* SignUpViewConroller.swift */,
 			);
 			path = LoginScreen;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				A7C742982B02A03400532A77 /* NotesViewController.swift in Sources */,
 				A7C72ACB2B0838A100FD72CE /* LoginViewController.swift in Sources */,
 				A7C7429A2B02A03400532A77 /* MainViewController.swift in Sources */,
+				CE1DE13E2B3B745B004821CE /* SignUpViewConroller.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -20,13 +20,14 @@ class SettingsViewController: UIViewController {
         setImageView()
         setLabel()
         setTableView()
-        
-        if !user.isLogged {
-            setButton()
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        if user.isLogged {
+            button.removeFromSuperview()
+        } else {
+            setButton()
+        }
         tableView.reloadData()
     }
     
