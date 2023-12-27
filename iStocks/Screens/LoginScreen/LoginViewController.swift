@@ -171,3 +171,16 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
 }
+
+extension LoginViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        logScrollView.endEditing(true)
+    }
+}

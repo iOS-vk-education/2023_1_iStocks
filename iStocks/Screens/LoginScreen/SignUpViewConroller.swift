@@ -216,3 +216,17 @@ class SignUpViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
+extension SignUpViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc
+    func dismissKeyboard() {
+        infScrollView.endEditing(true)
+        passwordScrollView.endEditing(true)
+    }
+}
