@@ -31,5 +31,5 @@ let stocks: [Stock] = [
     Stock(name: "Positive Technologies", ticker: "POSI", currentPrice: 2147.8, openPrice: 2150, isFavorite: true, haveNote: false, note: "", image: UIImage(named: "posi")!),
     Stock(name: "Роснефть", ticker: "ROSN", currentPrice: 578.85, openPrice: 575, isFavorite: false, haveNote: false, note: "", image: UIImage(named: "rosn")!),
     Stock(name: "Whoosh", ticker: "WUSH", currentPrice: 237.8, openPrice: 250, isFavorite: true, haveNote: true, note: "Усреднить позицию.", image: UIImage(named: "wush")!),
-    Stock(name: "Яндекс", ticker: "YNDX", currentPrice: 2594.6, openPrice: 2594.6, isFavorite: true, haveNote: false, note: "", image: UIImage(named: "yndx")!),
+    Stock(name: "Яндекс", ticker: "YNDX", currentPrice: 2594.6, openPrice: 2594.6, isFavorite: true, haveNote: false, note: "", image: UIImage(named: "yndx")!)
 ]

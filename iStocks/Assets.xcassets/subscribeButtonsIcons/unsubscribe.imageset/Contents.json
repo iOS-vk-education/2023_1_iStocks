@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "gal light.svg",
+      "filename" : "sw.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
@@ -12,12 +12,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "gal dark.svg",
+      "filename" : "sb.svg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "gal light 1.svg",
+      "filename" : "sw 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
@@ -28,12 +28,12 @@
           "value" : "dark"
         }
       ],
-      "filename" : "gal dark 1.svg",
+      "filename" : "sb 1.svg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "gal light 2.svg",
+      "filename" : "sw 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     },
@@ -44,7 +44,7 @@
           "value" : "dark"
         }
       ],
-      "filename" : "gal dark 2.svg",
+      "filename" : "sb 2.svg",
       "idiom" : "universal",
       "scale" : "3x"
     }

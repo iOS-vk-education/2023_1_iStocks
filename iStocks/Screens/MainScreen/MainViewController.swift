@@ -11,7 +11,7 @@ class MainViewController: UIViewController {
     private lazy var segmentedControl = UISegmentedControl(items: segmentedItems)
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
-    private let segmentedItems = ["ВСЕ", "Подписки"]
+    private let segmentedItems = ["ВСЕ", "Избранное"]
     
     private var selectedScreen = Screen.all
     private var printedStocks = stocks
@@ -156,15 +156,15 @@ extension MainViewController: UITableViewDataSource {
 extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let stockViewController = StockViewController()
+        let stockViewController: StockViewController
         
         configurePrintedStocks()
         configureSearchedStocks()
         
         if isSearched {
-            stockViewController.stock = searchedStocks[indexPath.row]
+            stockViewController = StockViewController(stock: searchedStocks[indexPath.row])
         } else {
-            stockViewController.stock = printedStocks[indexPath.row]
+            stockViewController = StockViewController(stock: printedStocks[indexPath.row])
         }
         
         navigationController?.pushViewController(stockViewController, animated: true)
