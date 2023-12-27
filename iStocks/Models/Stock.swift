@@ -5,7 +5,16 @@ class Stock {
     var ticker: String
     var currentPrice: Float
     var openPrice: Float
-    var isFavorite: Bool
+    var isFavorite: Bool {
+        didSet {
+            guard oldValue != isFavorite else { return }
+            if isFavorite {
+                UserFavoriteService.shared.setFavorite(self)
+            } else {
+                UserFavoriteService.shared.delFavorite(self)
+            }
+        }
+    }
     var haveNote: Bool
     var note: String
     var image: UIImage
@@ -15,7 +24,7 @@ class Stock {
         self.ticker = ticker
         self.currentPrice = currentPrice
         self.openPrice = openPrice
-        self.isFavorite = isFavorite
+        self.isFavorite = UserFavoriteService.shared.isFavorite(ticker)
         self.haveNote = haveNote
         self.note = note
         self.image = image

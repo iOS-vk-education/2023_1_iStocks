@@ -26,6 +26,7 @@
 		A7DA33512B0FA82D00A56DB2 /* NoteTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA33502B0FA82D00A56DB2 /* NoteTableCell.swift */; };
 		A7DA33532B0FA91900A56DB2 /* ThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DA33522B0FA91900A56DB2 /* ThemeViewController.swift */; };
 		CE1DE13E2B3B745B004821CE /* SignUpViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1DE13D2B3B745B004821CE /* SignUpViewConroller.swift */; };
+		CEE1022D2B3CC0FE00B44346 /* UserFavoriteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEE1022C2B3CC0FE00B44346 /* UserFavoriteService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		A7DA33502B0FA82D00A56DB2 /* NoteTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableCell.swift; sourceTree = "<group>"; };
 		A7DA33522B0FA91900A56DB2 /* ThemeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeViewController.swift; sourceTree = "<group>"; };
 		CE1DE13D2B3B745B004821CE /* SignUpViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewConroller.swift; sourceTree = "<group>"; };
+		CEE1022C2B3CC0FE00B44346 /* UserFavoriteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFavoriteService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,11 +84,11 @@
 		A7321BA22AE0690200A8ED3F /* iStocks */ = {
 			isa = PBXGroup;
 			children = (
+				CEE1022B2B3CC0D500B44346 /* Service */,
 				A7C9B1C72B066B54001F765D /* Constants.swift */,
 				A7321BA32AE0690200A8ED3F /* AppDelegate.swift */,
 				A7321BA52AE0690200A8ED3F /* SceneDelegate.swift */,
 				A7DA33482B0FA70E00A56DB2 /* Models */,
-				A7C9B1C22B06616E001F765D /* Services */,
 				A7C9B1C12B06611D001F765D /* CommonUI */,
 				A7C9B1C02B063F5D001F765D /* Screens */,
 				A7321BAC2AE0690400A8ED3F /* Assets.xcassets */,
@@ -114,13 +116,6 @@
 				A7C742932B02A03400532A77 /* TabBarController.swift */,
 			);
 			path = CommonUI;
-			sourceTree = "<group>";
-		};
-		A7C9B1C22B06616E001F765D /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		A7DA33482B0FA70E00A56DB2 /* Models */ = {
@@ -176,6 +171,14 @@
 				A7DA334E2B0FA7D700A56DB2 /* MainTableCell.swift */,
 			);
 			path = MainScreen;
+			sourceTree = "<group>";
+		};
+		CEE1022B2B3CC0D500B44346 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				CEE1022C2B3CC0FE00B44346 /* UserFavoriteService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,6 +260,7 @@
 				A7DA33532B0FA91900A56DB2 /* ThemeViewController.swift in Sources */,
 				A7DA33472B0AC4C300A56DB2 /* EditViewController.swift in Sources */,
 				A7C9B1C82B066B54001F765D /* Constants.swift in Sources */,
+				CEE1022D2B3CC0FE00B44346 /* UserFavoriteService.swift in Sources */,
 				A7C9B1C62B066889001F765D /* User.swift in Sources */,
 				A7321BA62AE0690200A8ED3F /* SceneDelegate.swift in Sources */,
 				A7C9B1CA2B06DB3E001F765D /* LanguageViewController.swift in Sources */,
