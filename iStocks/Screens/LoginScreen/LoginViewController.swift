@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
         view.backgroundColor = UIColor(named: "first")
         setUpNameLabel()
         setUpView()
+        setNavigationItem()
         setUploginButton()
         setUpsignUpButton()
     }
@@ -160,6 +161,15 @@ class LoginViewController: UIViewController {
     @objc
     private func clickSignUp() {
         navigationController?.pushViewController(SignUpViewController(), animated: true)
+    }
+    
+    private func setNavigationItem() {
+        let barButtonItem = UIBarButtonItem()
+        
+        barButtonItem.title = "Войти"
+        barButtonItem.tintColor = UIColor(named: "sixth")
+        
+        navigationItem.backBarButtonItem = barButtonItem
     }
 }
 
