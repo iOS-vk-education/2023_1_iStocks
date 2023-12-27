@@ -36,7 +36,7 @@ class StockViewController: UIViewController {
         }
         
         if stock.isFavorite {
-            stockView.layer.borderColor = UIColor(named: "eleventh")?.cgColor
+            stockView.layer.borderColor = UIColor(named: "mainAccentColor")?.cgColor
         } else {
             stockView.layer.borderColor = UIColor(named: "seventh")?.cgColor
         }
@@ -132,9 +132,9 @@ class StockViewController: UIViewController {
         if differencePrice == 0 {
             stockPriceLabel.textColor = UIColor(named: "sixth")
         } else if differencePrice > 0 {
-            stockPriceLabel.textColor = UIColor(named: "nineth")
+            stockPriceLabel.textColor = UIColor(named: "green")
         } else {
-            stockPriceLabel.textColor = UIColor(named: "tenth")
+            stockPriceLabel.textColor = UIColor(named: "red")
         }
         
         stockPriceLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -48,13 +48,13 @@ final class MainTableCell: UITableViewCell {
         if differencePrice == 0 {
             differencePriceLabel.textColor = UIColor(named: "sixth")
         } else if differencePrice > 0 {
-            differencePriceLabel.textColor = UIColor(named: "nineth")
+            differencePriceLabel.textColor = UIColor(named: "green")
         } else {
-            differencePriceLabel.textColor = UIColor(named: "tenth")
+            differencePriceLabel.textColor = UIColor(named: "red")
         }
         
         if stock.isFavorite {
-            containerView.layer.borderColor = UIColor(named: "eleventh")?.cgColor
+            containerView.layer.borderColor = UIColor(named: "mainAccentColor")?.cgColor
         } else {
             containerView.layer.borderColor = UIColor(named: "seventh")?.cgColor
         }
