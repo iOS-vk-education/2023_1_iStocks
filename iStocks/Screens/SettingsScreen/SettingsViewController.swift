@@ -161,7 +161,8 @@ extension SettingsViewController: UITableViewDataSource {
         
         detailLabel.sizeToFit()
         
-        cell.accessoryView = detailLabel
+        cell.accessoryType = .disclosureIndicator
+        // cell.accessoryView = detailLabel
         cell.contentConfiguration = content
         
         return cell
