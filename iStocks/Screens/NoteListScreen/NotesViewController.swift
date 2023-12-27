@@ -85,12 +85,12 @@ extension NotesViewController: UITableViewDataSource {
 extension NotesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let stockViewController = StockViewController()
+        let stockViewController: StockViewController
         
         if isSearched {
-            stockViewController.stock = searchedStocks[indexPath.row]
+            stockViewController = StockViewController(stock: searchedStocks[indexPath.row])
         } else {
-            stockViewController.stock = printedStocks[indexPath.row]
+            stockViewController = StockViewController(stock: printedStocks[indexPath.row])
         }
         navigationController?.pushViewController(stockViewController, animated: true)
     }
