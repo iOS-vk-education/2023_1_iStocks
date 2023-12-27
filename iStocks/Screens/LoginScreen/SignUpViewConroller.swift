@@ -3,7 +3,7 @@ import UIKit
 class SignUpViewController: UIViewController {
     private lazy var nameLabel = UILabel()
     private lazy var buttonLogIn = UIButton()
-    private lazy var infScrollView = UIScrollView()
+    private lazy var containerView = UIView()
     private lazy var passwordScrollView = UIScrollView()
     private lazy var buttonSignUp = UIButton()
     
@@ -16,16 +16,6 @@ class SignUpViewController: UIViewController {
         setUpInfScrollView()
         setUpPasswordScrollView()
         setUpButtonLogIn()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
     }
     
     private func setUpNameLabel() {
@@ -43,7 +33,7 @@ class SignUpViewController: UIViewController {
     }
     
     private func setUpInfScrollView() {
-        view.addSubview(infScrollView)
+        view.addSubview(containerView)
         
         var separatorView: UIView?
         
@@ -53,18 +43,18 @@ class SignUpViewController: UIViewController {
         
         let placeholders = ["Почта", "Никнейм"]
         
-        infScrollView.layer.cornerRadius = 10
-        infScrollView.layer.masksToBounds = true
-        infScrollView.backgroundColor = UIColor(named: "second")
+        containerView.layer.cornerRadius = 10
+        containerView.layer.masksToBounds = true
+        containerView.backgroundColor = UIColor(named: "second")
         
-        infScrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         let height = CGFloat(Double(44 * placeholders.count) + 0.25 * Double(placeholders.count - 1))
         NSLayoutConstraint.activate([
-            infScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            infScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            infScrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
-            infScrollView.heightAnchor.constraint(equalToConstant: height)
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
+            containerView.heightAnchor.constraint(equalToConstant: height)
         ])
         
         for (i, textField) in textFields.enumerated() {
@@ -72,7 +62,7 @@ class SignUpViewController: UIViewController {
                 separatorView = UIView()
                 separatorView!.backgroundColor = UIColor(named: "twelfth")
                 
-                infScrollView.addSubview(separatorView!)
+                containerView.addSubview(separatorView!)
                 separatorView!.translatesAutoresizingMaskIntoConstraints = false
                 
                 NSLayoutConstraint.activate([
@@ -90,13 +80,13 @@ class SignUpViewController: UIViewController {
             
             textField.tintColor = UIColor(named: "seventh")
             
-            infScrollView.addSubview(textField)
+            containerView.addSubview(textField)
             textField.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 textField.heightAnchor.constraint(equalToConstant: 44),
                 textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                 textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                textField.topAnchor.constraint(equalTo: (i == 0) ? infScrollView.topAnchor : separatorView!.bottomAnchor)
+                textField.topAnchor.constraint(equalTo: (i == 0) ? containerView.topAnchor : separatorView!.bottomAnchor)
             ])
             
             textField.leftView = UIView(frame: CGRect(
@@ -136,7 +126,7 @@ class SignUpViewController: UIViewController {
         NSLayoutConstraint.activate([
             passwordScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             passwordScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            passwordScrollView.topAnchor.constraint(equalTo: infScrollView.bottomAnchor, constant: 20),
+            passwordScrollView.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20),
             passwordScrollView.heightAnchor.constraint(equalToConstant: height)
         ])
         
@@ -227,7 +217,7 @@ extension SignUpViewController {
     
     @objc
     func dismissKeyboard() {
-        infScrollView.endEditing(true)
+        containerView.endEditing(true)
         passwordScrollView.endEditing(true)
     }
 }

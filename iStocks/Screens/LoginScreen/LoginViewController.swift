@@ -3,7 +3,7 @@ import UIKit
 class LoginViewController: UIViewController {
     private lazy var nameLabel = UILabel()
     private lazy var loginButton = UIButton()
-    private lazy var scrollView = UIScrollView()
+    private lazy var containerView = UIView()
     private lazy var signUpButton = UIButton()
     
     override func viewDidLoad() {
@@ -12,7 +12,7 @@ class LoginViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "first")
         setUpNameLabel()
-        setUpscrollView()
+        setUpView()
         setUploginButton()
         setUpsignUpButton()
     }
@@ -31,8 +31,8 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    private func setUpscrollView() {
-        view.addSubview(scrollView)
+    private func setUpView() {
+        view.addSubview(containerView)
         
         var separatorView: UIView?
         
@@ -42,18 +42,18 @@ class LoginViewController: UIViewController {
         
         let placeholders = ["Почта", "Пароль"]
         
-        scrollView.layer.cornerRadius = 10
-        scrollView.layer.masksToBounds = true
-        scrollView.backgroundColor = UIColor(named: "second")
+        containerView.layer.cornerRadius = 10
+        containerView.layer.masksToBounds = true
+        containerView.backgroundColor = UIColor(named: "second")
         
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         let height = CGFloat(Double(44 * placeholders.count) + 0.25 * Double(placeholders.count - 1))
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            scrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
-            scrollView.heightAnchor.constraint(equalToConstant: height)
+            containerView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            containerView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
+            containerView.heightAnchor.constraint(equalToConstant: height)
         ])
         
         for (i, textField) in textFields.enumerated() {
@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
                 separatorView = UIView()
                 separatorView!.backgroundColor = UIColor(named: "twelfth")
                 
-                scrollView.addSubview(separatorView!)
+                containerView.addSubview(separatorView!)
                 separatorView!.translatesAutoresizingMaskIntoConstraints = false
                 
                 NSLayoutConstraint.activate([
@@ -81,13 +81,13 @@ class LoginViewController: UIViewController {
             
             textField.isSecureTextEntry = textField.placeholder == "Пароль"
             
-            scrollView.addSubview(textField)
+            containerView.addSubview(textField)
             textField.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 textField.heightAnchor.constraint(equalToConstant: 44),
                 textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                 textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                textField.topAnchor.constraint(equalTo: (i == 0) ? scrollView.topAnchor : separatorView!.bottomAnchor)
+                textField.topAnchor.constraint(equalTo: (i == 0) ? containerView.topAnchor : separatorView!.bottomAnchor)
             ])
             
             textField.leftView = UIView(frame: CGRect(
@@ -124,7 +124,7 @@ class LoginViewController: UIViewController {
             loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             loginButton.heightAnchor.constraint(equalToConstant: 44),
-            loginButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20)
+            loginButton.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 20)
         ])
     }
     
@@ -172,6 +172,6 @@ extension LoginViewController {
     
     @objc
     func dismissKeyboard() {
-        scrollView.endEditing(true)
+        containerView.endEditing(true)
     }
 }
