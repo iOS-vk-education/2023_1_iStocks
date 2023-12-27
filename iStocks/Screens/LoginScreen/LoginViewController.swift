@@ -8,6 +8,7 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         
         view.backgroundColor = UIColor(named: "first")
         setUpNameLabel()

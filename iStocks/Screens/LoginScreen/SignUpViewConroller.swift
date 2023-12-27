@@ -9,6 +9,7 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboardWhenTappedAround()
         
         view.backgroundColor = UIColor(named: "first")
         setUpNameLabel()
