@@ -23,6 +23,8 @@ class SettingsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
         if user.isLogged {
             button.removeFromSuperview()
         } else {
@@ -41,7 +43,7 @@ class SettingsViewController: UIViewController {
         navigationItem.backBarButtonItem = backBarButtonItem
         
         if user.isLogged {
-            rightBarButtonItem = UIBarButtonItem(title: "Изм.", style: .plain, target: self, action: #selector(clickEdit))
+            rightBarButtonItem = UIBarButtonItem(title: "Изм.", style: .plain, target: self, action: #selector(editButtonWasPressed))
             rightBarButtonItem.tintColor = UIColor(named: "sixth")
             navigationItem.rightBarButtonItem = rightBarButtonItem
         }
@@ -113,7 +115,7 @@ class SettingsViewController: UIViewController {
         button.layer.cornerRadius = settingsConstant.buttonCornerRaduis
         button.clipsToBounds = true
         
-        button.addTarget(self, action: #selector(clickRegister), for: .touchUpInside)
+        button.addTarget(self, action: #selector(loginButtonWasPressed), for: .touchUpInside)
         
         button.translatesAutoresizingMaskIntoConstraints = false
         
@@ -126,12 +128,14 @@ class SettingsViewController: UIViewController {
     }
     
     @objc
-    private func clickRegister() {
+    private func loginButtonWasPressed() {
+        self.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(LoginViewController(), animated: true)
     }
     
     @objc
-    private func clickEdit() {
+    private func editButtonWasPressed() {
+        self.tabBarController?.tabBar.isHidden = true
         navigationController?.pushViewController(EditViewController(), animated: true)
     }
 }
@@ -139,7 +143,7 @@ class SettingsViewController: UIViewController {
 extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return cellsName.count
+        cellsName.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

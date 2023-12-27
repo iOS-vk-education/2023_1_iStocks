@@ -2,9 +2,9 @@ import UIKit
 
 class LoginViewController: UIViewController {
     private lazy var nameLabel = UILabel()
-    private lazy var buttonLogIn = UIButton()
-    private lazy var logScrollView = UIScrollView()
-    private lazy var buttonSignUp = UIButton()
+    private lazy var loginButton = UIButton()
+    private lazy var scrollView = UIScrollView()
+    private lazy var signUpButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -12,19 +12,9 @@ class LoginViewController: UIViewController {
         
         view.backgroundColor = UIColor(named: "first")
         setUpNameLabel()
-        setUplogScrollView()
-        setUpButtonLogIn()
-        setUpButtonSignUp()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = true
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.tabBarController?.tabBar.isHidden = false
+        setUpscrollView()
+        setUploginButton()
+        setUpsignUpButton()
     }
     
     private func setUpNameLabel() {
@@ -41,8 +31,8 @@ class LoginViewController: UIViewController {
         ])
     }
     
-    private func setUplogScrollView() {
-        view.addSubview(logScrollView)
+    private func setUpscrollView() {
+        view.addSubview(scrollView)
         
         var separatorView: UIView?
         
@@ -52,18 +42,18 @@ class LoginViewController: UIViewController {
         
         let placeholders = ["Почта", "Пароль"]
         
-        logScrollView.layer.cornerRadius = 10
-        logScrollView.layer.masksToBounds = true
-        logScrollView.backgroundColor = UIColor(named: "second")
+        scrollView.layer.cornerRadius = 10
+        scrollView.layer.masksToBounds = true
+        scrollView.backgroundColor = UIColor(named: "second")
         
-        logScrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
         
         let height = CGFloat(Double(44 * placeholders.count) + 0.25 * Double(placeholders.count - 1))
         NSLayoutConstraint.activate([
-            logScrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            logScrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            logScrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
-            logScrollView.heightAnchor.constraint(equalToConstant: height)
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            scrollView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: -16),
+            scrollView.heightAnchor.constraint(equalToConstant: height)
         ])
         
         for (i, textField) in textFields.enumerated() {
@@ -71,7 +61,7 @@ class LoginViewController: UIViewController {
                 separatorView = UIView()
                 separatorView!.backgroundColor = UIColor(named: "twelfth")
                 
-                logScrollView.addSubview(separatorView!)
+                scrollView.addSubview(separatorView!)
                 separatorView!.translatesAutoresizingMaskIntoConstraints = false
                 
                 NSLayoutConstraint.activate([
@@ -91,13 +81,13 @@ class LoginViewController: UIViewController {
             
             textField.isSecureTextEntry = textField.placeholder == "Пароль"
             
-            logScrollView.addSubview(textField)
+            scrollView.addSubview(textField)
             textField.translatesAutoresizingMaskIntoConstraints = false
             NSLayoutConstraint.activate([
                 textField.heightAnchor.constraint(equalToConstant: 44),
                 textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
                 textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-                textField.topAnchor.constraint(equalTo: (i == 0) ? logScrollView.topAnchor : separatorView!.bottomAnchor)
+                textField.topAnchor.constraint(equalTo: (i == 0) ? scrollView.topAnchor : separatorView!.bottomAnchor)
             ])
             
             textField.leftView = UIView(frame: CGRect(
@@ -116,48 +106,48 @@ class LoginViewController: UIViewController {
         }
     }
     
-    private func setUpButtonLogIn() {
-        view.addSubview(buttonLogIn)
+    private func setUploginButton() {
+        view.addSubview(loginButton)
         
-        buttonLogIn.setTitle("Войти", for: .normal)
-        buttonLogIn.setTitleColor(UIColor(named: "third"), for: .normal)
-        buttonLogIn.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        buttonLogIn.backgroundColor = UIColor(named: "sixth")
+        loginButton.setTitle("Войти", for: .normal)
+        loginButton.setTitleColor(UIColor(named: "third"), for: .normal)
+        loginButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        loginButton.backgroundColor = UIColor(named: "sixth")
         
-        buttonLogIn.layer.cornerRadius = 12
-        buttonLogIn.clipsToBounds = true
+        loginButton.layer.cornerRadius = 12
+        loginButton.clipsToBounds = true
         
-        buttonLogIn.addTarget(self, action: #selector(clickLogIn), for: .touchUpInside)
-        buttonLogIn.translatesAutoresizingMaskIntoConstraints = false
+        loginButton.addTarget(self, action: #selector(clickLogIn), for: .touchUpInside)
+        loginButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            buttonLogIn.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonLogIn.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonLogIn.heightAnchor.constraint(equalToConstant: 44),
-            buttonLogIn.topAnchor.constraint(equalTo: logScrollView.bottomAnchor, constant: 20)
+            loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            loginButton.heightAnchor.constraint(equalToConstant: 44),
+            loginButton.topAnchor.constraint(equalTo: scrollView.bottomAnchor, constant: 20)
         ])
     }
     
-    private func setUpButtonSignUp() {
-        view.addSubview(buttonSignUp)
+    private func setUpsignUpButton() {
+        view.addSubview(signUpButton)
         
-        buttonSignUp.setTitle("Регистрация", for: .normal)
-        buttonSignUp.setTitleColor(UIColor(named: "sixth"), for: .normal)
-        buttonSignUp.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
-        buttonSignUp.layer.borderWidth = 3.25
-        buttonSignUp.layer.cornerRadius = 12
+        signUpButton.setTitle("Регистрация", for: .normal)
+        signUpButton.setTitleColor(UIColor(named: "sixth"), for: .normal)
+        signUpButton.titleLabel?.font = UIFont.systemFont(ofSize: 17, weight: .semibold)
+        signUpButton.layer.borderWidth = 3.25
+        signUpButton.layer.cornerRadius = 12
         
-        buttonSignUp.layer.borderColor = UIColor(named: "sixth")?.cgColor
-        buttonSignUp.clipsToBounds = true
+        signUpButton.layer.borderColor = UIColor(named: "sixth")?.cgColor
+        signUpButton.clipsToBounds = true
         
-        buttonSignUp.addTarget(self, action: #selector(clickSignUp), for: .touchUpInside)
-        buttonSignUp.translatesAutoresizingMaskIntoConstraints = false
+        signUpButton.addTarget(self, action: #selector(clickSignUp), for: .touchUpInside)
+        signUpButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            buttonSignUp.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            buttonSignUp.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            buttonSignUp.heightAnchor.constraint(equalToConstant: 44),
-            buttonSignUp.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -45)
+            signUpButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
+            signUpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            signUpButton.heightAnchor.constraint(equalToConstant: 44),
+            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -45)
         ])
     }
     
@@ -182,6 +172,6 @@ extension LoginViewController {
     
     @objc
     func dismissKeyboard() {
-        logScrollView.endEditing(true)
+        scrollView.endEditing(true)
     }
 }
