@@ -11,6 +11,7 @@
 		A7321BA62AE0690200A8ED3F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7321BA52AE0690200A8ED3F /* SceneDelegate.swift */; };
 		A7321BAD2AE0690400A8ED3F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7321BAC2AE0690400A8ED3F /* Assets.xcassets */; };
 		A7321BB02AE0690400A8ED3F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7321BAE2AE0690400A8ED3F /* LaunchScreen.storyboard */; };
+		A7506E582B3CD31300B8FCF9 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7506E572B3CD31300B8FCF9 /* APIManager.swift */; };
 		A7C72ACB2B0838A100FD72CE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C72ACA2B0838A100FD72CE /* LoginViewController.swift */; };
 		A7C742972B02A03400532A77 /* Stock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C742912B02A03400532A77 /* Stock.swift */; };
 		A7C742982B02A03400532A77 /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C742922B02A03400532A77 /* NotesViewController.swift */; };
@@ -34,6 +35,7 @@
 		A7321BAC2AE0690400A8ED3F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A7321BAF2AE0690400A8ED3F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A7321BB12AE0690400A8ED3F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A7506E572B3CD31300B8FCF9 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		A7C72ACA2B0838A100FD72CE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A7C742912B02A03400532A77 /* Stock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stock.swift; sourceTree = "<group>"; };
 		A7C742922B02A03400532A77 /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 		A7C9B1C22B06616E001F765D /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A7506E572B3CD31300B8FCF9 /* APIManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				A7C9B1C62B066889001F765D /* User.swift in Sources */,
 				A7321BA62AE0690200A8ED3F /* SceneDelegate.swift in Sources */,
 				A7C9B1CA2B06DB3E001F765D /* LanguageViewController.swift in Sources */,
+				A7506E582B3CD31300B8FCF9 /* APIManager.swift in Sources */,
 				A7DA33512B0FA82D00A56DB2 /* NoteTableCell.swift in Sources */,
 				A7C742982B02A03400532A77 /* NotesViewController.swift in Sources */,
 				A7C72ACB2B0838A100FD72CE /* LoginViewController.swift in Sources */,

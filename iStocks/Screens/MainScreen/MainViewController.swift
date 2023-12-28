@@ -7,6 +7,8 @@ class MainViewController: UIViewController {
         case favorites
     }
     
+    private var printedStocks: [Stock] = []
+    
     private lazy var searchBar = UISearchBar()
     private lazy var segmentedControl = UISegmentedControl(items: segmentedItems)
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
@@ -14,7 +16,6 @@ class MainViewController: UIViewController {
     private let segmentedItems = ["ВСЕ", "Избранное"]
     
     private var selectedScreen = Screen.all
-    private var printedStocks = stocks
     
     private var searchedStocks = [Stock]()
     private var isSearched = false
@@ -23,7 +24,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "first")
-
+    
+        stocks = []
+        fetchData()
+        printedStocks = stocks
+        
         setNavigationItem()
         setSearchBar()
         setSegmentedControl()
@@ -180,5 +185,11 @@ extension MainViewController: UISearchBarDelegate {
         configureSearchedStocks()
         
         tableView.reloadData()
+    }
+}
+
+extension MainViewController {
+    func fetchData() {
+        APIManager.shared.getData()
     }
 }
