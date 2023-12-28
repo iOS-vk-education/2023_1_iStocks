@@ -114,6 +114,8 @@ extension NotesViewController: UISearchBarDelegate {
 
 extension NotesViewController {
     func fetchData() {
-        APIManager.shared.getData()
-    }
+            APIManager.shared.getData { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
 }

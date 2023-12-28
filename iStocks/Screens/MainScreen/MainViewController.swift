@@ -190,6 +190,8 @@ extension MainViewController: UISearchBarDelegate {
 
 extension MainViewController {
     func fetchData() {
-        APIManager.shared.getData()
-    }
+            APIManager.shared.getData { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
 }

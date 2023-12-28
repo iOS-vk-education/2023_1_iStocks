@@ -9,52 +9,55 @@ class APIManager {
     
     init() {}
     
-    func getData() {
+    func getData(_ completion: @escaping () -> Void) {
+
+            guard let url = URL(string: urlString) else {
+                return
+            }
         
-        guard let url = URL(string: urlString) else {
-            return 
-        }
-    
-        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            if let data {
-                let decodedData = try? JSONDecoder().decode(JSON.self, from: data)
-                if let decodedValue = decodedData?.value as? [String: Any] {
-                    if let decodedDataM = decodedValue["marketdata"] as? [String: Any] {
-                        if let decodedDataMM = decodedDataM["data"] as? [[Any]] {
-                            for data in decodedDataMM {
-                                if "\(type(of: data[9]))" == "Optional<Any>" {
-                                    continue
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let data {
+                    let decodedData = try? JSONDecoder().decode(JSON.self, from: data)
+                    if let decodedValue = decodedData?.value as? [String: Any] {
+                        if let decodedDataM = decodedValue["marketdata"] as? [String: Any] {
+                            if let decodedDataMM = decodedDataM["data"] as? [[Any]] {
+                                for data in decodedDataMM {
+                                    if "\(type(of: data[9]))" == "Optional<Any>" {
+                                        continue
+                                    }
+                                    
+                                    stocks.append(Stock(name: "", ticker: data[0] as! String, currentPrice: Float(data[12] as! Double), openPrice: Float(data[9] as! Double), isFavorite: false, haveNote: false, note: "", image: UIImage(systemName: "tropicalstorm.circle")!, highPrice: Float(data[11] as! Double), lowPrice: Float(data[10] as! Double)))
                                 }
-                                
-                                stocks.append(Stock(name: "", ticker: data[0] as! String, currentPrice: Float(data[12] as! Double), openPrice: Float(data[9] as! Double), isFavorite: false, haveNote: false, note: "", image: UIImage(systemName: "tropicalstorm.circle")!, highPrice: Float(data[11] as! Double), lowPrice: Float(data[10] as! Double)))
                             }
                         }
-                    }
-                    
-                    if let decodedDataM = decodedValue["securities"] as? [String: Any] {
-                        if let decodedDataMM = decodedDataM["data"] as? [[Any]] {
-                            for data in decodedDataMM {
-                                if "\(type(of: data[9]))" == "Optional<Any>" {
-                                    continue
-                                }
-                                
-                                let ticker = data[0] as! String
-                                
-                                for stock in stocks {
-                                    if ticker == stock.ticker {
-                                        stock.name = data[2] as! String
-                                        break
+                        
+                        if let decodedDataM = decodedValue["securities"] as? [String: Any] {
+                            if let decodedDataMM = decodedDataM["data"] as? [[Any]] {
+                                for data in decodedDataMM {
+                                    if "\(type(of: data[9]))" == "Optional<Any>" {
+                                        continue
+                                    }
+                                    
+                                    let ticker = data[0] as! String
+                                    
+                                    for stock in stocks {
+                                        if ticker == stock.ticker {
+                                            stock.name = data[2] as! String
+                                            break
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    DispatchQueue.main.async {
+                        completion()
+                    }
                 }
             }
-        }
 
-        task.resume()
-    }
+            task.resume()
+        }
 }
 
 func decode(fromObject container: KeyedDecodingContainer<JSONCodingKeys>) -> [String: Any] {
