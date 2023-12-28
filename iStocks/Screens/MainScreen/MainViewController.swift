@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     private let segmentedItems = ["ВСЕ", "Избранное"]
     
     private var selectedScreen = Screen.all
-    private var printedStocks = stocks
+    private var printedStocks: [Stock] = []
     
     private var searchedStocks = [Stock]()
     private var isSearched = false
@@ -24,6 +24,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "first")
 
+        stocks = []
+        fetchData()
+        printedStocks = stocks
+        
         setNavigationItem()
         setSearchBar()
         setSegmentedControl()
@@ -181,4 +185,12 @@ extension MainViewController: UISearchBarDelegate {
         
         tableView.reloadData()
     }
+}
+
+extension MainViewController {
+    func fetchData() {
+            APIManager.shared.getData { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
 }

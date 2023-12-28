@@ -2,7 +2,7 @@ import UIKit
 
 class NotesViewController: UIViewController {
     
-    private var printedStocks = stocks.filter({ x in x.haveNote })
+    private var printedStocks: [Stock] = []
     private var searchedStocks = [Stock]()
     private var isSearched = false
     
@@ -12,6 +12,11 @@ class NotesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor(named: "first")
+        
+        stocks = []
+        fetchData()
+            
+        printedStocks = stocks.filter({ x in x.haveNote })
         
         setNavigationItem()
         setSearchBar()
@@ -105,5 +110,14 @@ extension NotesViewController: UISearchBarDelegate {
         })
         
         tableView.reloadData()
+    }
+}
+
+
+extension NotesViewController {
+    func fetchData() {
+        APIManager.shared.getData { [weak self] in
+            self?.tableView.reloadData()
+        }
     }
 }
