@@ -27,6 +27,7 @@ class StockViewController: UIViewController {
     private lazy var currencyPresentLabel = UILabel()
     private lazy var currencyNameLabel = UILabel()
     
+
     init (stock: Stock) {
         self.stock = stock
         super.init(nibName: nil, bundle: nil)
